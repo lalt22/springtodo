@@ -6,6 +6,8 @@ import org.modelmapper.spi.MappingContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import lalt22.todos.tasks.Task;
+
 
 @Configuration
 public class ModelMapperConfig {
@@ -15,6 +17,7 @@ public class ModelMapperConfig {
 		ModelMapper mapper = new ModelMapper();
 		mapper.typeMap(String.class, String.class).setConverter(new StringTrimConverter());
 		mapper.getConfiguration().setSkipNullEnabled(true);
+
 
 		return mapper;
 	}
@@ -40,4 +43,5 @@ public class ModelMapperConfig {
 			return context.getSource().toLowerCase();
 		}
 	}
+	
 }

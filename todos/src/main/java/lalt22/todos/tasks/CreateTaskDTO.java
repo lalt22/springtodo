@@ -13,7 +13,7 @@ public class CreateTaskDTO {
 	
 	@NotNull
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
-	private Date dueDate;
+	private String dueDate;
 	
 	
 	
@@ -29,13 +29,13 @@ public class CreateTaskDTO {
 
 
 
-	public Date getDueDate() {
+	public String getDueDate() {
 		return dueDate;
 	}
 
 
 
-	public void setDueDate(Date dueDate) {
+	public void setDueDate(String dueDate) {
 		this.dueDate = dueDate;
 	}
 
