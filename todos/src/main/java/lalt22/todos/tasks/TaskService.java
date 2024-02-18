@@ -70,4 +70,13 @@ public class TaskService {
 		Task updatedTask = this.repo.save(foundTask);
 		return Optional.of(updatedTask);
 	}
+	
+	public boolean deleteTaskById(Long id) {
+		Optional<Task> maybeTask = this.repo.findById(id);
+		if(maybeTask.isEmpty()) {
+			return false;
+		}
+		this.repo.deleteById(id);
+		return true;
+	}
 }
