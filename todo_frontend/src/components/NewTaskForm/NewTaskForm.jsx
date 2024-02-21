@@ -2,6 +2,7 @@ import { RefreshContext } from "../../context/RefreshContext/RefreshContextProvi
 import {useContext, useEffect} from "react";
 import { useForm } from "react-hook-form";
 import { addNewTask } from "../../services/taskServices";
+import "./NewTaskForm.scss"
 
 const NewTaskForm = ({adding, setAdding}) => {
     const {refresh, setRefresh} = useContext(RefreshContext);
