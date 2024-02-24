@@ -1,6 +1,5 @@
 package lalt22.todos.tasks;
 
-import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -31,8 +30,6 @@ public class TaskController {
 	
 	@PostMapping
 	public ResponseEntity<Task> createTask(@Valid @RequestBody  CreateTaskDTO data) {
-		System.out.println(data.toString());
-//		String returnedString = this.taskService.createTask(data);
 		Task createdTask = this.taskService.createTask(data);
 		return new ResponseEntity<>(createdTask, HttpStatus.CREATED);
 	}
@@ -56,20 +53,7 @@ public class TaskController {
 		Task foundTask = maybeFoundTask.orElseThrow();
 		return new ResponseEntity<>(foundTask, HttpStatus.OK);
 	}
-	
-//	@GetMapping
-//	public ResponseEntity<List<Task>> getAllTasks () {
-//		List<Task> allTasks = this.taskService.getAll();
-//		return new ResponseEntity<>(allTasks, HttpStatus.OK);
-//	}
-	
-//	@GetMapping("/{date}")
-//	public ResponseEntity<List<Task>> getTaskByDate(@PathVariable String date) {
-//		List<Task> tasksOnDate = this.taskService.getByDate(date);
-//		System.out.println(tasksOnDate.toString());
-//		return new ResponseEntity<>(tasksOnDate, HttpStatus.OK);
-//	}
-//	
+
 	
 	@PatchMapping("/{id}")
 	public ResponseEntity<Task> updateTaskById(@Valid @RequestBody  UpdateTaskDTO data, @PathVariable Long id) throws Exception {

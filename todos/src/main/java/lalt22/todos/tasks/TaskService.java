@@ -43,21 +43,13 @@ public class TaskService {
 	}
 	
 	public List<Task> getFilteredTasks(Map<String, String> allParams) {
-			System.out.println(allParams.get("description"));
-			System.out.println(allParams.get("completed"));
-			System.out.println(allParams.get("dueDate"));
-//
-//			
 			if (allParams.get("description") != null) {
-				System.out.println("RETURNING DESCRIPTION");
 				return this.repo.findByDescriptionContaining(allParams.get("description"));
 			}
 			if(allParams.get("completed") != null) {
-				System.out.println("RETURNING COMPLETED");
 				return this.repo.findByCompleted(Boolean.parseBoolean(allParams.get("completed")));
 			}
 			if(allParams.get("dueDate") != null) {
-				System.out.println("RETURNING DUEDATE");
 				return this.repo.findByDueDate(allParams.get("dueDate"));
 			}
 			System.out.println("RETURNING NULL");
