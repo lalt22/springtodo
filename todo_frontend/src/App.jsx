@@ -1,24 +1,38 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import './App.css'
 import TaskList from './containers/TaskList/TaskList';
 import RefreshContextProvider from './context/RefreshContext/RefreshContextProvider';
 import NewTaskForm from './components/NewTaskForm/NewTaskForm';
+import SearchBar from './components/SearchBar/SearchBar';
 
 function App() {
   const [adding, setAdding] = useState(false);
-
-
+  const [searchParam, setSearchParam] = useState("");
+  
   const handleClick = () => {
-    setAdding(true);
+    setAdding(!adding);
   }
+
+  const addingText = adding ? "Cancel" : "Add New";
 
   return (
     <RefreshContextProvider>
       <div className='page-wrapper'>
         <h1>TODOs</h1>
-        <button onClick={handleClick}>Add New...</button>
-        {adding && <NewTaskForm adding={adding} setAdding={setAdding} />}
-        <TaskList />
+
+      <div className='inputs'>
+        <div className='adding'>
+            <button onClick={handleClick}>{addingText}</button>
+            {adding && 
+              <NewTaskForm adding={adding} setAdding={setAdding} makeNew="true"/>}
+          </div>
+          <div className='searching'>
+            <SearchBar setSearchParam={setSearchParam}/>
+          </div>
+      </div>
+        
+        
+        <TaskList searchParam={searchParam}/>
       </div>
     </RefreshContextProvider>
     

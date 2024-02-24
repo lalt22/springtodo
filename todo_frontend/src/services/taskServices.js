@@ -7,8 +7,16 @@ export const getAllTasks = async() => {
     return data;
 }
 
+export const getTaskById = async (id) => {
+    const res = await fetch(`http://localhost:8100/tasks/${id}`);
+    if(!res.ok) {
+        throw new Error('Task Not Found');
+    }
+    const data = await res.json();
+    return data;
+}
+
 export const toggleTaskById = async (id, completed) => {
-    console.log(completed, "COMPLETED STATUS");
     const res = await fetch(`http://localhost:8100/tasks/${id}`, {
         method: "PATCH",
         headers: {
@@ -22,8 +30,36 @@ export const toggleTaskById = async (id, completed) => {
         throw new Error('Toggle failed');
     }
     const data = await res.json();
-    // console.log(data);
     return data;
+}
+
+export const updateTaskById = async(id, newData) => {
+    const res = await fetch(`http://localhost:8100/tasks/${id}`, {
+        method: "PATCH",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            "description": newData.description,
+            "dueDate": newData.dueDate
+        })
+    })
+    if (!res.ok) {
+        throw new Error('Update failed');
+    }
+    const data = await res.json();
+    return data;
+}
+
+export const getTasksByDescription = async (descriptionSearch) => {
+    const res = await fetch(`http://localhost:8100/tasks?description=${descriptionSearch}`);
+
+    if (!res.ok) {
+        throw new Error('Update failed');
+    }
+    const data = await res.json();
+    return data;
+
 }
 
 export const addNewTask = async(data) => {
@@ -43,7 +79,6 @@ export const addNewTask = async(data) => {
         throw new Error('Failed to get tasks');
     }
 }
-
 export const deleteTaskById = async (id) => {
     const res = await fetch(`http://localhost:8100/tasks/${id}`, {
         method: "DELETE",

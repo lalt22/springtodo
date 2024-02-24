@@ -3,7 +3,6 @@
     display: flex;
     flex-flow: column wrap;
     width: 50%;
-    align-self: center;
     gap: 10px;
 
     & input {
@@ -13,8 +12,23 @@
         border: none;
 
         &:hover {
-            outline: 1px solid blue;
+            outline: 1px solid green;
             cursor: pointer;
         }
+
+        &:focus {
+            cursor: text;
+        }
+    }
+
+    &.left-aligned {
+        align-self: flex-start;
+        height: 100%;
+        justify-content: space-around;
+    }
+
+    &.centered {
+        align-self: center;
+        height: fit-content;
     }
 }

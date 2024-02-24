@@ -38,6 +38,10 @@ public class TaskService {
 		return this.repo.findByDueDate(date);
 	}
 	
+	public Optional<Task> getTaskById(Long id) {
+		return this.repo.findById(id);	
+	}
+	
 	public List<Task> getFilteredTasks(Map<String, String> allParams) {
 			System.out.println(allParams.get("description"));
 			System.out.println(allParams.get("completed"));

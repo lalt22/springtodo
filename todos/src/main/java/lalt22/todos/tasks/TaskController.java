@@ -37,6 +37,7 @@ public class TaskController {
 		return new ResponseEntity<>(createdTask, HttpStatus.CREATED);
 	}
 	
+	
 	@GetMapping
 	public ResponseEntity<List<Task>> getTasksByParam(@RequestParam Map<String, String> allParams) {		
 		if (allParams.isEmpty()) {
@@ -49,6 +50,12 @@ public class TaskController {
 		}
 	}
 	
+	@GetMapping("/{id}")
+	public ResponseEntity<Task> getTaskById(@PathVariable Long id) {
+		Optional<Task> maybeFoundTask = this.taskService.getTaskById(id);
+		Task foundTask = maybeFoundTask.orElseThrow();
+		return new ResponseEntity<>(foundTask, HttpStatus.OK);
+	}
 	
 //	@GetMapping
 //	public ResponseEntity<List<Task>> getAllTasks () {
