@@ -4,7 +4,10 @@ export const getAllTasks = async() => {
         throw new Error('Failed to get tasks');
     }
     const data = await res.json();
-    return data;
+    const byCreation = orderByCreation([...data]);
+    const sortedData = orderByCompleted(byCreation);
+    console.log(sortedData, "GOT DATA");
+    return sortedData;
 }
 
 export const getTaskById = async (id) => {
@@ -30,6 +33,7 @@ export const toggleTaskById = async (id, completed) => {
         throw new Error('Toggle failed');
     }
     const data = await res.json();
+    console.log(data, "TOGGLED DATA")
     return data;
 }
 
@@ -58,7 +62,9 @@ export const getTasksByDescription = async (descriptionSearch) => {
         throw new Error('Update failed');
     }
     const data = await res.json();
-    return data;
+    const byCreation = orderByCreation([...data]);
+    const sortedData = orderByCompleted(byCreation);
+    return sortedData;
 
 }
 
@@ -93,4 +99,28 @@ export const deleteTaskById = async (id) => {
 
 const reformatDate = (dateString) => {
     return dateString.split('-').reverse().join('-');
+}
+
+export const orderByCreation = (tasks) => {
+    return tasks.sort((task1, task2) => {
+        if(task1.createdDate > task2.createdDate) {
+            return -1;
+        }
+        else if (task2.createdDate > task1.createdDate) {
+            return 1;
+        }
+        return 0;
+    })
+}
+
+export const orderByCompleted = (tasks) => {
+    return tasks.sort((task1, task2) => {
+        if (task1.completed > task2.completed) {
+            return 1;
+        }
+        else if (task2.completed > task1.completed) {
+            return -1;
+        }
+        return 0;
+    })
 }
