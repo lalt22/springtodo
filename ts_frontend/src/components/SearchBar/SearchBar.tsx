@@ -1,19 +1,26 @@
-import {useState, useEffect} from 'react';
-import "./SearchBar.scss"
-const SearchBar = ({ setSearchParam }) => {
-    const [inputValue, setInputValue] = useState("");
+import { useState, useEffect } from 'react';
+import './SearchBar.scss';
+import React from 'react';
 
-    const handleInputChange = (e) => {
-        setInputValue(e.target.value);
-    }
+const SearchBar = ({ setSearchParam }: any) => {
+  const [inputValue, setInputValue] = useState('');
 
-    useEffect(() => {
-        setSearchParam(inputValue);
-    }, [inputValue])
+  const handleInputChange = (e: any) => {
+    setInputValue(e.target.value);
+  };
 
-    return (
-        <input className="input-bar" type="text" onChange={handleInputChange} placeholder="Search By Description"/>
-    )
-}
+  useEffect(() => {
+    setSearchParam(inputValue);
+  }, [inputValue]);
+
+  return (
+    <input
+      className='input-bar'
+      type='text'
+      onChange={handleInputChange}
+      placeholder='Search By Description'
+    />
+  );
+};
 
 export default SearchBar;
