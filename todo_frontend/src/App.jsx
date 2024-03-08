@@ -23,7 +23,7 @@ function App() {
       <div className='page-wrapper'>
         <div className='inputs'>
           <div className='adding'>
-              <button onClick={handleClick}>{addingText}</button>
+              <button onClick={handleClick} data-testid="new_form_btn">{addingText}</button>
               {adding &&
                 <NewTaskForm adding={adding} setAdding={setAdding} makeNew="true"/>}
             </div>

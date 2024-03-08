@@ -30,10 +30,10 @@ const NewTaskForm = ({setAdding, makeNew, id}) => {
 
     const formClasses = makeNew ? "centered" : "left-aligned"
 
-    console.log("New:" + makeNew + " taskToEdit: "+ taskToEdit);
+    // console.log("New:" + makeNew + " taskToEdit: "+ taskToEdit);
 
     return (
-        <form className={["new-form", formClasses].join(" ")} onSubmit={handleSubmit(onSubmit)}>
+        <form className={["new-form", formClasses].join(" ")} onSubmit={handleSubmit(onSubmit)} data-testid="add_form">
             {makeNew &&
              <div className="inputs">
                 <input type="text" placeholder="Enter description" {...register("description", {required: true})}></input>

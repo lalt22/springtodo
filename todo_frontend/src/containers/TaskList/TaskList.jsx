@@ -19,7 +19,7 @@ const TaskList = ({searchParam}) => {
     }, [refresh, searchParam]);
 
     useEffect(() => {
-        console.log("Refresh: " + refresh);
+        // console.log("Refresh: " + refresh);
     }, [refresh])
 
     useEffect(() => {

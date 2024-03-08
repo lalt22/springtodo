@@ -39,7 +39,7 @@ const TaskCard = ({ props }) => {
     const buttonIcons = propData.completed ? "" : faCheck;
 
     return (
-        <div className={[propData.completed ? "completed-task" : "incomplete-task", "task-card"].join(" ")}>
+        <div className={[propData.completed ? "completed-task" : "incomplete-task", "task-card"].join(" ")} data-testid={propData.description}>
             <button id="complete" onClick={handleClick} className={completeButtonStyle}></button>
             <div className="task-details">
                 {!editing &&

@@ -6,7 +6,7 @@ export const getAllTasks = async() => {
     const data = await res.json();
     const byCreation = orderByCreation([...data]);
     const sortedData = orderByCompleted(byCreation);
-    console.log(sortedData, "GOT DATA");
+    // console.log(sortedData, "GOT DATA");
     return sortedData;
 }
 
@@ -33,7 +33,7 @@ export const toggleTaskById = async (id, completed) => {
         throw new Error('Toggle failed');
     }
     const data = await res.json();
-    console.log(data, "TOGGLED DATA")
+    // console.log(data, "TOGGLED DATA")
     return data;
 }
 
